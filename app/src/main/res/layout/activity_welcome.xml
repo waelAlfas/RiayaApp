@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_light"
+    android:fillViewport="true"
+    android:layoutDirection="rtl">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
+
+        <!-- 1. الشعار الدائري -->
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="90dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/ic_logo"
+            android:scaleType="fitCenter"
+            android:scrollbarSize="40dp"
+
+            />
+        <!-- 2. اسم العلامة التجارية -->
+        <TextView
+            android:id="@+id/tvBrandName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="رعاية"
+            android:textColor="@color/primary_teal"
+            android:textSize="33sp"
+            android:textStyle="bold" />
+
+        <!-- 3. الشعار اللفظي الفرعي -->
+        <TextView
+            android:id="@+id/tvTagline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="رعايتك الصحية في مكان واحد"
+            android:textColor="@color/text_body"
+            android:textSize="15sp" />
+
+        <!-- 4. الصورة التوضيحية -->
+        <ImageView
+            android:id="@+id/imgIllustration"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:layout_marginTop="24dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/family_doctor" />
+
+        <!-- 5. العنوان الرئيسي -->
+        <TextView
+            android:id="@+id/tvHeadline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="مرحباً بك في رعاية"
+            android:textColor="@color/text_headline"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <!-- 6. الوصف النصي -->
+        <TextView
+            android:id="@+id/tvSubtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="ابدأ رحلتك نحو حياة صحية أفضل\nمن خلال متابعة حالتك الصحية بسهولة."
+            android:textColor="@color/text_body"
+            android:textSize="17sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_weight="0" />
+        <!-- 7. الزر الرئيسي -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/btn_primary_bg"
+            android:text="إنشاء حساب جديد"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- 8. الزر الثانوي -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSecondary"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/btn_secondary_bg"
+            android:text="لديك حساب؟ نسجيل الدخول"
+            android:textColor="@color/primary_teal"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- 9. مؤشر الصفحات -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:scrollbarSize="20dp">
+
+            <View
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/dot_inactive" />
+
+            <View
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/dot_inactive" />
+            <View
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/dot_active" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
