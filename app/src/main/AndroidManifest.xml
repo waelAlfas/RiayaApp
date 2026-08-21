@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Project4">
 
         <activity
-            android:name="com.wael.riayaapp.ui.auth.WelcomeActivity"
+            android:name="com.wael.riayaApp.ui.auth.WelcomeActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -24,7 +24,7 @@
         </activity>
 
         <activity
-            android:name="com.wael.riayaapp.ui.auth.SignUpActivity"
+            android:name="com.wael.riayaApp.ui.auth.SignUpActivity"
             android:exported="false">
         </activity>
 

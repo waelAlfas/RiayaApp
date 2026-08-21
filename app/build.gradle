@@ -33,13 +33,23 @@ android {
     }
 }
 
-dependencies {
-    implementation libs.activity.ktx
-    implementation libs.appcompat
-    implementation libs.constraintlayout
-    implementation libs.material
-    testImplementation libs.junit
-    androidTestImplementation libs.espresso.core
-    androidTestImplementation libs.ext.junit
-    implementation 'com.google.android.gms:play-services-auth:21.0.0'
-}
+
+
+
+    dependencies {
+        def roomVersion = "2.6.1"
+
+        // مكتبات Room الأساسية لـ Java
+        implementation("androidx.room:room-runtime:$roomVersion")
+        annotationProcessor("androidx.room:room-compiler:$roomVersion")
+
+
+        implementation libs.activity.ktx
+        implementation libs.appcompat
+        implementation libs.constraintlayout
+        implementation libs.material
+        testImplementation libs.junit
+        androidTestImplementation libs.espresso.core
+        androidTestImplementation libs.ext.junit
+        implementation 'com.google.android.gms:play-services-auth:21.0.0'
+    }

@@ -1,4 +1,4 @@
-package com.wael.riayaapp.ui.auth;
+package com.wael.riayaApp.ui.auth;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.wael.riayaapp.ui.auth;
+package com.wael.riayaApp.ui.auth;
 
 import android.graphics.Color;
 import android.os.Bundle;
