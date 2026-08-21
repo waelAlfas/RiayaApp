@@ -1,8 +1,8 @@
 package com.wael.riayaapp.ui.auth;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -23,7 +23,11 @@ import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.wael.riayaapp.R;
+import com.wael.riayaapp.data.local.AppDatabase;
+import com.wael.riayaapp.data.local.dao.UserDao;
+import com.wael.riayaapp.data.local.entity.User;
 
+import java.util.concurrent.Executors;
 import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -37,7 +41,10 @@ public class SignUpActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private ViewGroup mainContainer;
 
-    // متغيرة لتحديد الوضع الحالي (افتراضي: بريد إلكتروني)
+    // قاعدة البيانات
+    private UserDao userDao;
+
+    // متغير لتحديد الوضع الحالي (الافتراضي يكون البريد الإلكتروني)
     private boolean isEmailMode = true;
 
     // نمط التحقق من الاسم (أحرف مسافات فقط)
@@ -53,6 +60,9 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        // تهيئة DAO
+        userDao = AppDatabase.getInstance(this).userDao();
 
         initViews();
         setupListeners();
@@ -88,14 +98,15 @@ public class SignUpActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(v -> performValidation());
 
         tvLoginLink.setOnClickListener(v -> {
-            Toast.makeText(this, "الانتقال إلى شاشة تسجيل الدخول", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
 
-        // 👁️ التحكم في إظهار وإخفاء كلمة المرور يدويًا
+// 👁 التحكم في إظهار وإخفاء كلمة المرور يدويًا
         layoutPassword.setEndIconOnClickListener(v -> {
             if (etPassword.getTransformationMethod() instanceof PasswordTransformationMethod) {
                 etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-
                 layoutPassword.setEndIconDrawable(com.google.android.material.R.drawable.design_ic_visibility);
             } else {
                 etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -104,7 +115,7 @@ public class SignUpActivity extends AppCompatActivity {
             etPassword.setSelection(etPassword.getText().length());
         });
 
-        // 👁️ التحكم في إظهار وإخفاء تأكيد كلمة المرور يدويًا
+        // 👁 التحكم في إظهار وإخفاء تأكيد كلمة المرور يدويًا
         layoutConfirmPassword.setEndIconOnClickListener(v -> {
             if (etConfirmPassword.getTransformationMethod() instanceof PasswordTransformationMethod) {
                 etConfirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -122,10 +133,9 @@ public class SignUpActivity extends AppCompatActivity {
         isEmailMode = isEmail;
         clearErrors();
 
-        // تطبيق حركة تبديل هادئة وناعمة
         if (mainContainer != null) {
             AutoTransition transition = new AutoTransition();
-            transition.setDuration(100); // زيادة مدة الانتقال لتكون أكثر سلاسة
+            transition.setDuration(100);
             TransitionManager.beginDelayedTransition(mainContainer, transition);
         }
 
@@ -170,10 +180,11 @@ public class SignUpActivity extends AppCompatActivity {
             isValid = false;
         }
 
-        // 2. التحقق من البريد أو الجوال (اليمني)
+        // 2. التحقق من البريد أو الجوال
         if (isEmailMode) {
             if (TextUtils.isEmpty(email)) {
                 layoutEmail.setError("البريد الإلكتروني مطلوب");
+
                 isValid = false;
             } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 layoutEmail.setError("صيغة البريد الإلكتروني غير صحيحة");
@@ -182,10 +193,9 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
             if (TextUtils.isEmpty(phone)) {
                 layoutPhone.setError("رقم الجوال مطلوب");
-
                 isValid = false;
             } else if (!YEMEN_PHONE_PATTERN.matcher(phone).matches()) {
-                layoutPhone.setError("يرجى إدخال رقم جوال يمني صحيح مكون من 9 أرقام يبدأ بـ 7 (مثال: 771234567)");
+                layoutPhone.setError("يرجى إدخال رقم جوال صحيح مكون من 9 أرقام يبدأ بـ 7 (مثال: 714531842)");
                 isValid = false;
             }
         }
@@ -208,14 +218,14 @@ public class SignUpActivity extends AppCompatActivity {
             isValid = false;
         }
 
-        // 5. التحقق من التحديد على الشروط
+        // 5. التحقق من الموافقة على الشروط
         if (!cbTerms.isChecked()) {
             Toast.makeText(this, "يجب الموافقة على الشروط والأحكام لمتابعة التسجيل", Toast.LENGTH_LONG).show();
             isValid = false;
         }
 
         if (isValid) {
-            executeRegistration();
+            executeRegistration(fullName, isEmailMode ? email : null, !isEmailMode ? phone : null, password);
         }
     }
 
@@ -227,19 +237,44 @@ public class SignUpActivity extends AppCompatActivity {
         if (layoutConfirmPassword != null) layoutConfirmPassword.setError(null);
     }
 
-    private void executeRegistration() {
+    private void executeRegistration(String fullName, String email, String phone, String password) {
         progressBar.setVisibility(View.VISIBLE);
         btnRegister.setEnabled(false);
 
-        new Handler().postDelayed(() -> {
-            progressBar.setVisibility(View.GONE);
-            btnRegister.setEnabled(true);
+        Executors.newSingleThreadExecutor().execute(() -> {
+            // فحص عدم تكرار البريد الإلكتروني أو رقم الهاتف في Room
+            boolean isEmailTaken = email != null && userDao.isEmailExists(email);
+            boolean isPhoneTaken = phone != null && userDao.isPhoneExists(phone);
 
-            if (isEmailMode) {
-                Toast.makeText(SignUpActivity.this, "تم إرسال رابط التفعيل إلى بريدك الإلكتروني", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(SignUpActivity.this, "تم إرسال رمز OTP إلى رقم جوالك", Toast.LENGTH_LONG).show();
-            }
-        }, 2000);
+            runOnUiThread(() -> {
+                if (isEmailTaken) {
+                    progressBar.setVisibility(View.GONE);
+                    btnRegister.setEnabled(true);
+                    layoutEmail.setError("البريد الإلكتروني مستخدم مسبقاً");
+                } else if (isPhoneTaken) {
+                    progressBar.setVisibility(View.GONE);
+                    btnRegister.setEnabled(true);
+                    layoutPhone.setError("رقم الجوال مستخدم مسبقاً");
+                } else {
+                    // إنشاء كائن المستخدم وحفظه مباشرة في قاعدة البيانات
+                    User newUser = new User(fullName, email, phone, password);
+
+                    Executors.newSingleThreadExecutor().execute(() -> {
+                        userDao.insertUser(newUser);
+
+                        runOnUiThread(() -> {
+                            progressBar.setVisibility(View.GONE);
+                            btnRegister.setEnabled(true);
+                            Toast.makeText(SignUpActivity.this, "تم إنشاء الحساب بنجاح!", Toast.LENGTH_SHORT).show();
+
+                            // الانتقال المباشر إلى شاشة تسجيل الدخول
+                            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        });
+                    });
+                }
+            });
+        });
     }
 }

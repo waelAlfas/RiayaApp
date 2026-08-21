@@ -11,9 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project4">
-
         <activity
-            android:name="com.wael.riayaapp.ui.auth.WelcomeActivity"
+            android:name=".ui.auth.WelcomeActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -24,12 +23,39 @@
         </activity>
 
         <activity
-            android:name="com.wael.riayaapp.ui.auth.SignUpActivity"
-            android:exported="false">
-        </activity>
+            android:name=".ui.auth.SignUpActivity"
+            android:exported="false" />
 
+        <activity
+            android:name=".ui.auth.LoginActivity"
+            android:exported="false" />
+
+        <!-- <activity -->
+        <!-- android:name="com.wael.riayaapp.ui.home.MainActivity" -->
+        <!-- android:exported="true" -->
+        <!-- android:windowSoftInputMode="adjustResize"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+
+
+        <!-- <activity -->
+        <!-- android:name="com.wael.riayaapp.ui.auth.SignUpActivity" -->
+        <!-- android:exported="true" -->
+        <!-- android:windowSoftInputMode="adjustResize"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
 <!--        <activity-->
-<!--            android:name="com.wael.riayaapp.ui.home.MainActivity"-->
+<!--            android:name=".ui.auth.VerificationActivity"-->
 <!--            android:exported="true"-->
 <!--            android:windowSoftInputMode="adjustResize">-->
 <!--            <intent-filter>-->
@@ -40,7 +66,7 @@
 <!--        </activity>-->
 
 <!--        <activity-->
-<!--            android:name="com.wael.riayaapp.ui.auth.SignUpActivity"-->
+<!--            android:name=".ui.auth.LoginActivity"-->
 <!--            android:exported="true"-->
 <!--            android:windowSoftInputMode="adjustResize">-->
 <!--            <intent-filter>-->
