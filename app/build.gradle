@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'com.wael.riayaApp'
+    namespace 'com.wael.riayaapp'
     compileSdk {
         version = release(36) {
             minorApiLevel = 1

@@ -87,7 +87,7 @@
             android:layout_weight="0" />
         <!-- 7. الزر الرئيسي -->
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnPrimary"
+            android:id="@+id/btnCreateAccount"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="24dp"
@@ -99,7 +99,7 @@
 
         <!-- 8. الزر الثانوي -->
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSecondary"
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="30dp"
@@ -109,32 +109,6 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <!-- 9. مؤشر الصفحات -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="30dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:scrollbarSize="20dp">
 
-            <View
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_margin="8dp"
-                android:background="@drawable/dot_inactive" />
-
-            <View
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_margin="8dp"
-                android:background="@drawable/dot_inactive" />
-            <View
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_margin="8dp"
-                android:background="@drawable/dot_active" />
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>

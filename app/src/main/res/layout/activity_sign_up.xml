@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/surface_white">
+
+    <LinearLayout
+        android:id="@+id/mainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layoutDirection="rtl">
+
+        <!-- الشعار والعناوين -->
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_logo" />
+
+        <TextView
+            android:id="@+id/tvAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="رعاية"
+            android:textColor="@color/primary_teal"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvAppSlogan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="نهتم بصحتك كل يوم"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="إنشاء حساب جديد"
+            android:textColor="@color/text_headline"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="أنشئ حسابك وابدأ رحلتك نحو حياة صحية أفضل"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- تبويب الاختيار -->
+        <LinearLayout
+            android:id="@+id/layoutTabs"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/tab_container_bg"
+            android:orientation="horizontal"
+            android:padding="2dp"
+            android:layout_marginBottom="20dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnTabEmail"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_primary_bg"
+                android:text="البريد الإلكتروني"
+                android:textColor="@color/surface_white"
+                android:textSize="12sp"
+                app:backgroundTint="@null" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnTabPhone"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:text="رقم الجوال"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                app:backgroundTint="@null" />
+        </LinearLayout>
+
+        <!-- حقل الاسم الكامل -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutFullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/primary_teal"
+            app:boxStrokeErrorColor="@color/primary_teal"
+            app:errorIconDrawable="@null"
+            app:hintTextColor="@color/primary_teal"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="الاسم الكامل"
+                android:textColor="@color/text_primary"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- حقل البريد الإلكتروني -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/primary_teal"
+            app:boxStrokeErrorColor="@color/primary_teal"
+            app:errorIconDrawable="@null"
+            app:hintTextColor="@color/primary_teal"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="البريد الإلكتروني"
+                android:textColor="@color/text_primary"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- حقل رقم الجوال بمعيار اليمن (+967) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone"
+            app:prefixText="+967 "
+            app:prefixTextColor="@color/primary_teal"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/primary_teal"
+            app:boxStrokeErrorColor="@color/primary_teal"
+            app:errorIconDrawable="@null"
+            app:hintTextColor="@color/primary_teal"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="7XXXXXXXX"
+                android:textColor="@color/text_primary"
+                android:inputType="phone"
+                android:textDirection="ltr"
+                android:textAlignment="viewStart" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- حقل كلمة المرور (معدّل للتحكم المباشر في العين) -->
+        <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/layoutPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/design_ic_visibility_off"
+        app:endIconTint="@color/text_secondary"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/primary_teal"
+        app:boxStrokeErrorColor="@color/primary_teal"
+        app:errorIconDrawable="@null"
+        app:hintTextColor="@color/primary_teal"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="كلمة المرور"
+            android:textColor="@color/text_primary"
+            android:inputType="textPassword"
+            android:textDirection="ltr"
+            android:textAlignment="viewStart" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- حقل تأكيد كلمة المرور (معدّل للتحكم المباشر في العين) -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/design_ic_visibility_off"
+        app:endIconTint="@color/text_secondary"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/primary_teal"
+        app:boxStrokeErrorColor="@color/primary_teal"
+        app:errorIconDrawable="@null"
+        app:hintTextColor="@color/primary_teal"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="تأكيد كلمة المرور"
+            android:textColor="@color/text_primary"
+            android:inputType="textPassword"
+            android:textDirection="ltr"
+            android:textAlignment="viewStart" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- الشروط والأحكام -->
+    <LinearLayout
+        android:id="@+id/layoutTerms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="24dp">
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cbTerms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:buttonTint="@color/primary_teal" />
+
+        <TextView
+            android:id="@+id/tvTermsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="أوافق على "
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvTermsLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="شروط الاستخدام "
+            android:textColor="@color/primary_teal"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvTermsAnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="و "
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvPrivacyLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="سياسة الخصوصية"
+            android:textColor="@color/primary_teal"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- زر إنشاء حساب -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/btn_primary_bg"
+        android:text="إنشاء حساب"
+        android:textColor="@color/surface_white"
+        android:textSize="16sp"
+        app:backgroundTint="@null" />
+
+    <!-- رابط الانتقال لشاشة تسجيل الدخول -->
+    <LinearLayout
+        android:id="@+id/layoutLoginLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvAlreadyHaveAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="لديك حساب بالفعل؟ "
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvLoginLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="تسجيل الدخول"
+            android:textColor="@color/primary_teal"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- مؤشر التحميل -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        android:indeterminateTint="@color/primary_teal"
+        android:layout_marginTop="12dp" />
+</LinearLayout>
+    </ScrollView>
